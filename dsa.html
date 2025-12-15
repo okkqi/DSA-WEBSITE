@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Group Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { 
+    font-family:'Poppins',sans-serif; 
+    background: linear-gradient(135deg,#ff3399,#ff99cc); 
+    min-height:100vh; 
+    color:#1f2937; 
+}
+
+header { 
+    background: rgba(255,255,255,0.15); 
+    backdrop-filter: blur(10px); 
+    color: #1f2937; 
+    padding:80px 20px 60px; 
+    text-align:center; 
+    border-bottom-left-radius:40px; 
+    border-bottom-right-radius:40px; 
+    box-shadow:0 20px 60px rgba(0,0,0,0.2); 
+}
+header h1 { 
+    font-size:3em; 
+    margin-bottom:10px; 
+    text-shadow:2px 2px 20px rgba(0,0,0,0.2); 
+}
+header p { 
+    font-size:1.2em; 
+    opacity:0.95; 
+}
+
+.members-section { 
+    margin-top:35px; 
+    background: rgba(255,255,255,0.2); 
+    backdrop-filter: blur(10px); 
+    border-radius:20px; 
+    padding:30px; 
+    max-width:900px; 
+    margin-left:auto; 
+    margin-right:auto; 
+}
+.members-section h3 { 
+    margin-bottom:20px; 
+    font-size:1.6em; 
+}
+.members-grid { 
+    display:grid; 
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); 
+    gap:15px; 
+    text-align:left; 
+}
+.member-card { 
+    background: rgba(255,255,255,0.2); 
+    padding:14px 20px; 
+    border-radius:12px; 
+    font-weight:500; 
+    transition:all 0.3s; 
+    border:1px solid rgba(255,255,255,0.3); 
+}
+.member-card:hover { 
+    background: rgba(255,255,255,0.3); 
+    transform:translateY(-2px); 
+}
+
+nav { 
+    display:flex; 
+    justify-content:center; 
+    flex-wrap:wrap; 
+    gap:12px; 
+    margin-top:-35px; 
+    position:relative; 
+    z-index:10; 
+    padding:0 20px; 
+}
+nav button { 
+    background: rgba(255,255,255,0.25); 
+    backdrop-filter:blur(10px); 
+    color:#1f2937; 
+    border:2px solid rgba(255,255,255,0.3); 
+    padding:12px 24px; 
+    border-radius:50px; 
+    font-weight:600; 
+    cursor:pointer; 
+    transition:all 0.3s; 
+    box-shadow:0 8px 20px rgba(0,0,0,0.15); 
+}
+nav button:hover, nav button.active { 
+    background: rgba(255,255,255,0.35); 
+    transform:translateY(-3px) scale(1.05); 
+}
+
+.container { max-width:1200px; margin:30px auto; padding:0 20px; }
+.card { 
+    background: rgba(255,255,255,0.95); 
+    backdrop-filter: blur(10px); 
+    border-radius:25px; 
+    padding:40px; 
+    margin-bottom:40px; 
+    box-shadow:0 20px 60px rgba(0,0,0,0.15); 
+    border:1px solid rgba(255,255,255,0.3); 
+    transition:all 0.3s; 
+}
+.card:hover { transform:translateY(-5px); }
+
+.card h2 { 
+    font-size:2em; 
+    background: linear-gradient(135deg,#ff3399,#ff99cc); 
+    -webkit-background-clip:text; 
+    -webkit-text-fill-color:transparent; 
+    margin-bottom:25px; 
+    font-weight:700; 
+}
+.card h3 { 
+    font-size:1.3em; 
+    color:#ff99cc; 
+    margin:25px 0 15px; 
+    font-weight:600; 
+}
+.card ol { 
+    padding-left:30px; 
+    line-height:2; 
+    font-size:1.05em; 
+}
+
+pre { 
+    background: linear-gradient(135deg,#ff3399,#ff99cc); 
+    color:#1f2937; 
+    padding:25px; 
+    border-radius:15px; 
+    overflow:auto; 
+    font-size:0.9em; 
+    line-height:1.6; 
+    white-space:pre-wrap; 
+    border-left:4px solid #ff99cc; 
+    margin:15px 0; 
+    font-family:'Courier New',monospace; 
+}
+
+.algo-block { 
+    background: rgba(255,51,153,0.05); 
+    padding:25px; 
+    margin:20px 0; 
+    border-radius:12px; 
+    border-left:4px solid #ff99cc; 
+}
+.algo-title { 
+    font-size:1.2em; 
+    font-weight:700; 
+    color:#ff99cc; 
+    margin-bottom:15px; 
+}
+.algo-step { 
+    margin-left:20px; 
+    line-height:2.2; 
+    font-family:'Courier New',monospace; 
+    color:#1f2937; 
+    font-size:0.95em; 
+}
+
+.code-header { 
+    background: linear-gradient(135deg,#ff3399,#ff99cc); 
+    color:white; 
+    padding:10px 20px; 
+    border-radius:12px 12px 0 0; 
+    font-weight:600; 
+    margin-top:25px; 
+}
+
+.flex { display:flex; flex-wrap:wrap; gap:10px; margin-top:15px; }
+input { 
+    padding:12px 18px; 
+    border-radius:10px; 
+    border:2px solid #e5e7eb; 
+    font-size:1em; 
+    transition:all 0.3s; 
+    background:white; 
+    flex:1; 
+    min-width:200px; 
+}
+input:focus { outline:none; border-color:#ff99cc; box-shadow:0 0 0 3px rgba(255,153,204,0.15); }
+
+button { 
+    cursor:pointer; 
+    background: linear-gradient(135deg,#ff3399,#ff99cc); 
+    color:#1f2937; 
+    font-weight:600; 
+    border:none; 
+    padding:12px 18px; 
+    border-radius:10px; 
+    font-size:1em; 
+    transition:all 0.3s; 
+    box-shadow:0 5px 15px rgba(255,153,204,0.3); 
+}
+button:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(255,153,204,0.4); }
+
+.result { 
+    margin-top:15px; 
+    font-weight:600; 
+    color:#ff99cc; 
+    font-size:1.15em; 
+    padding:12px; 
+    border-radius:10px; 
+    background:rgba(255,153,204,0.1); 
+}
+
+.tabcontent { display:none; animation:fadeIn 0.4s ease-in-out; }
+.tabcontent.active { display:block; }
+@keyframes fadeIn { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
+@keyframes slideIn { from {opacity:0; transform:translateY(20px) scale(0.8);} to {opacity:1; transform:translateY(0) scale(1);} }
+
+textarea { 
+    width:100%; 
+    font-family:'Courier New',monospace; 
+    font-size:0.9em; 
+    padding:12px; 
+    border-radius:10px; 
+    margin-top:10px; 
+    height:180px; 
+    border:2px solid #e5e7eb; 
+    background:white; 
+    resize:vertical; 
+}
+textarea:focus { outline:none; border-color:#ff99cc; }
+
+footer { 
+    text-align:center; 
+    padding:40px 20px; 
+    background: rgba(255,255,255,0.15); 
+    backdrop-filter:blur(10px); 
+    color:#1f2937; 
+    border-top-left-radius:40px; 
+    border-top-right-radius:40px; 
+    margin-top:50px; 
+    font-size:1em; 
+    font-weight:600; 
+    box-shadow:0 -20px 60px rgba(0,0,0,0.2); 
+}
+
+@media (max-width:768px) { 
+    header h1 { font-size:2em; } 
+    .card { padding:25px; } 
+    .members-grid { grid-template-columns:1fr; } 
+}
+
+</style>
+</head>
+<body>
+
+
+
+
+<header>
+<h1>DATA STRUCTURE AND ALGORITHM WEBSITE</h1>
+<p>10 ALGORITHM + 10 PSEUDOCODE + PYTHON & C++ IMPLEMENTATION</p>
+<div class="members-section">
+<h3>🤍 Group Members 🤍</h3>
+<div class="members-grid">
+<div class="member-card">1. MAGNO, ANIKAH KIM</div>
+<div class="member-card">2. OCHINANG, RAFAEL</div>
+<div class="member-card">3. FIGURACION, JOSHUA</div>
+<div class="member-card">4. MADRID, RHAJZ</div>
+<div class="member-card">5. SAMSON, LEIONNE</div>
+<div class="member-card">6. DEL FINADO, DAN ARVIN</div>
+<div class="member-card">7. ESPIRITU, HARDEY</div>
+<div class="member-card">8. MEJIA, REXTER</div>
+</div>
+</div>
+</header>
+
+<nav>
+<button class="tabBtn active" onclick="showTab('algorithms')">Algorithms</button>
+<button class="tabBtn" onclick="showTab('pseudocode')">Pseudocode</button>
+<button class="tabBtn" onclick="showTab('array')">Array</button>
+<button class="tabBtn" onclick="showTab('stack')">Stack</button>
+<button class="tabBtn" onclick="showTab('queue')">Queue</button>
+<button class="tabBtn" onclick="showTab('tree')">Tree</button>
+</nav>
+
+<div class="container">
+
+<div id="algorithms" class="tabcontent active card">
+<h2>✅ 10 Algorithms</h2>
+<ol>
+<li><strong>Linear Search</strong> - Sequential search through array</li>
+<li><strong>Binary Search</strong> - Efficient search in sorted array</li>
+<li><strong>Bubble Sort</strong> - Compare adjacent elements</li>
+<li><strong>Selection Sort</strong> - Select minimum element repeatedly</li>
+<li><strong>Insertion Sort</strong> - Build sorted array incrementally</li>
+<li><strong>Factorial</strong> - Recursive n! calculation</li>
+<li><strong>Fibonacci Series</strong> - Generate Fibonacci numbers</li>
+<li><strong>Palindrome Check</strong> - Check if string is palindrome</li>
+<li><strong>Prime Number Check</strong> - Determine if number is prime</li>
+<li><strong>GCD</strong> - Greatest Common Divisor using Euclidean algorithm</li>
+</ol>
+</div>
+
+<div id="pseudocode" class="tabcontent card">
+<h2>📋 10 Pseudocode</h2>
+
+<div class="algo-block">
+<div class="algo-title">1. Linear Search</div>
+<div class="algo-step">
+FUNCTION LinearSearch(array, key):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;FOR i = 0 TO length(array) - 1:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF array[i] == key THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN i<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END FOR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;RETURN -1<br>
+END FUNCTION
+</div>
+</div>
+
+<div class="algo-block">
+<div class="algo-title">2. Binary Search</div>
+<div class="algo-step">
+FUNCTION BinarySearch(array, key):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SET low = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SET high = length(array) - 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;WHILE low <= high:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET mid = (low + high) / 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF array[mid] == key THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN mid<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE IF array[mid] > key THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET high = mid - 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET low = mid + 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END WHILE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;RETURN -1<br>
+END FUNCTION
+</div>
+</div>
+
+<div class="algo-block">
+<div class="algo-title">3. Bubble Sort</div>
+<div class="algo-step">
+FUNCTION BubbleSort(array):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SET n = length(array)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;FOR i = 0 TO n - 1:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR j = 0 TO n - i - 2:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF array[j] > array[j + 1] THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SWAP array[j] and array[j + 1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END FOR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END FOR<br>
+END FUNCTION
+</div>
+</div>
+
+<div class="algo-block">
+<div class="algo-title">4. Selection Sort</div>
+<div class="algo-step">
+FUNCTION SelectionSort(array):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SET n = length(array)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;FOR i = 0 TO n - 1:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET minIndex = i<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR j = i + 1 TO n - 1:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF array[j] < array[minIndex] THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET minIndex = j<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END FOR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SWAP array[i] and array[minIndex]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END FOR<br>
+END FUNCTION
+</div>
+</div>
+
+<div class="algo-block">
+<div class="algo-title">5. Insertion Sort</div>
+<div class="algo-step">
+FUNCTION InsertionSort(array):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SET n = length(array)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;FOR i = 1 TO n - 1:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET key = array[i]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET j = i - 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHILE j >= 0 AND array[j] > key:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET array[j + 1] = array[j]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET j = j - 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END WHILE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET array[j + 1] = key<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END FOR<br>
+END FUNCTION
+</div>
+</div>
+
+<div class="algo-block">
+<div class="algo-title">6. Factorial</div>
+<div class="algo-step">
+FUNCTION Factorial(n):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IF n == 0 OR n == 1 THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN n * Factorial(n - 1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END IF<br>
+END FUNCTION
+</div>
+</div>
+
+<div class="algo-block">
+<div class="algo-title">7. Fibonacci Series</div>
+<div class="algo-step">
+FUNCTION Fibonacci(n):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SET a = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SET b = 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PRINT a, b<br>
+&nbsp;&nbsp;&nbsp;&nbsp;FOR i = 2 TO n:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET c = a + b<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRINT c<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET a = b<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET b = c<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END FOR<br>
+END FUNCTION
+</div>
+</div>
+
+<div class="algo-block">
+<div class="algo-title">8. Palindrome Check</div>
+<div class="algo-step">
+FUNCTION IsPalindrome(string):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SET reversed = REVERSE(string)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IF string == reversed THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN "Palindrome"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN "Not Palindrome"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END IF<br>
+END FUNCTION
+</div>
+</div>
+
+<div class="algo-block">
+<div class="algo-title">9. Prime Number Check</div>
+<div class="algo-step">
+FUNCTION IsPrime(n):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IF n <= 1 THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN "Not Prime"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END IF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;FOR i = 2 TO SQRT(n):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF n % i == 0 THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN "Not Prime"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END IF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END FOR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;RETURN "Prime"<br>
+END FUNCTION
+</div>
+</div>
+
+<div class="algo-block">
+<div class="algo-title">10. GCD (Greatest Common Divisor)</div>
+<div class="algo-step">
+FUNCTION GCD(a, b):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;WHILE b != 0:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET temp = b<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET b = a % b<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET a = temp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;END WHILE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;RETURN a<br>
+END FUNCTION
+</div>
+</div>
+</div>
+
+<div id="array" class="tabcontent card">
+<h2>📦 Array</h2>
+<div class="flex">
+<input id="arrayInput" type="number" placeholder="Enter number">
+<button onclick="addArray()">Add</button>
+<button onclick="removeArray()">Remove</button>
+<button onclick="searchArray()">Search</button>
+</div>
+<p class="result" id="arrayResult">Array: []</p>
+<textarea id="arrayOutput" readonly>Array operations will appear here...</textarea>
+
+<div class="code-header">Python - Array Operations</div>
+<pre># Python Array Implementation
+arr = []
+
+# Add elements
+arr.append(10)
+arr.append(20)
+arr.append(30)
+print("After adding:", arr)
+
+# Search element
+search_val = 20
+if search_val in arr:
+    index = arr.index(search_val)
+    print(f"{search_val} found at index {index}")
+else:
+    print(f"{search_val} not found")
+
+# Remove last element
+removed = arr.pop()
+print(f"Removed: {removed}")
+print("After removing:", arr)
+
+# Access element
+print("First element:", arr[0])
+print("Array length:", len(arr))
+
+# Output:
+# After adding: [10, 20, 30]
+# 20 found at index 1
+# Removed: 30
+# After removing: [10, 20]
+# First element: 10
+# Array length: 2</pre>
+
+<div class="code-header">C++ - Array Operations</div>
+<pre>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; arr;
+    
+    // Add elements
+    arr.push_back(10);
+    arr.push_back(20);
+    arr.push_back(30);
+    cout &lt;&lt; "After adding: ";
+    for(int x : arr) cout &lt;&lt; x &lt;&lt; " ";
+    cout &lt;&lt; endl;
+    
+    // Search element
+    int search_val = 20;
+    auto it = find(arr.begin(), arr.end(), search_val);
+    if(it != arr.end()) {
+        cout &lt;&lt; search_val &lt;&lt; " found at index " 
+             &lt;&lt; (it - arr.begin()) &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; search_val &lt;&lt; " not found" &lt;&lt; endl;
+    }
+    
+    // Remove last element
+    int removed = arr.back();
+    arr.pop_back();
+    cout &lt;&lt; "Removed: " &lt;&lt; removed &lt;&lt; endl;
+    cout &lt;&lt; "After removing: ";
+    for(int x : arr) cout &lt;&lt; x &lt;&lt; " ";
+    cout &lt;&lt; endl;
+    
+    // Access element
+    cout &lt;&lt; "First element: " &lt;&lt; arr[0] &lt;&lt; endl;
+    cout &lt;&lt; "Array size: " &lt;&lt; arr.size() &lt;&lt; endl;
+    
+    return 0;
+}
+
+/* Output:
+After adding: 10 20 30 
+20 found at index 1
+Removed: 30
+After removing: 10 20 
+First element: 10
+Array size: 2
+*/</pre>
+</div>
+
+<div id="stack" class="tabcontent card">
+<h2>📚 Stack (Max Size = 5)</h2>
+
+<h3>Stack Example</h3>
+
+<pre style="
+background:rgba(255,153,204,0.15);
+border-left:4px solid #ff99cc;
+padding:20px;
+font-family:'Courier New',monospace;
+">
+|  50  |  ← TOP
+|  40  |
+|  30  |
+|  20  |
+|  10  |  ← BOTTOM
+</pre>
+
+<p><strong>Current Size:</strong> 5</p>
+<p style="color:red; font-weight:bold;">
+🚫 STACK OVERFLOW!  
+Cannot push more than 5 elements.
+</p>
+
+<h3>Stack Rules</h3>
+<ul>
+  <li>Push adds element to the TOP</li>
+  <li>Pop removes the TOP element</li>
+  <li>If stack size = 5 → OVERFLOW</li>
+</ul>
+
+<h2>📚 Stack Operations</h2>
+
+<h3>Stack - Push & Pop</h3>
+<div class="flex">
+<input id="stackInput" type="number" placeholder="Enter number">
+<button onclick="pushStack()">Push</button>
+<button onclick="popStack()">Pop</button>
+<button onclick="peekStack()">Peek</button>
+<button onclick="clearStack()">Clear</button>
+</div>
+<div id="stackVisual" style="display:flex; flex-direction:column-reverse; align-items:center; min-height:300px; margin:20px 0; padding:20px; background:rgba(102,126,234,0.05); border-radius:15px; border:2px dashed #667eea;">
+<div style="font-weight:600; color:#667eea; margin-top:15px; padding:10px; background:rgba(102,126,234,0.1); border-radius:8px; width:150px; text-align:center;">⬇️ BOTTOM ⬇️</div>
+</div>
+<p class="result" id="stackResult">Stack: [] | Size: 0</p>
+
+<h3>Expression Converter (Infix ↔ Prefix ↔ Postfix)</h3>
+<div class="flex">
+<input id="expressionInput" placeholder="e.g., 2+3*4 or (2+3)*4">
+<button onclick="convertExpression()">Convert All</button>
+</div>
+<p class="result" id="infixDisplayResult"></p>
+<p class="result" id="prefixResult"></p>
+<p class="result" id="postfixResult"></p>
+<textarea id="stackOutput" readonly>Stack operations will appear here...</textarea>
+
+<div class="code-header">Python - Stack Operations & Expression Conversion</div>
+<pre># Python Stack with Push/Pop & Expression Conversion
+stack = []
+
+# Push and Pop Operations
+stack.append(10)
+stack.append(20)
+stack.append(30)
+print("Stack after push:", stack)
+print("Top element:", stack[-1])
+print("Stack size:", len(stack))
+
+popped = stack.pop()
+print("\nPopped element:", popped)
+print("Stack after pop:", stack)
+print("New top:", stack[-1])
+
+# Expression Conversion Functions
+def precedence(op):
+    if op in ['+', '-']: return 1
+    if op in ['*', '/']: return 2
+    if op == '^': return 3
+    return 0
+
+def infix_to_postfix(exp):
+    stack, result = [], ""
+    for ch in exp:
+        if ch.isalnum():
+            result += ch
+        elif ch == '(':
+            stack.append(ch)
+        elif ch == ')':
+            while stack and stack[-1] != '(':
+                result += stack.pop()
+            stack.pop()
+        else:
+            while stack and precedence(stack[-1]) >= precedence(ch):
+                result += stack.pop()
+            stack.append(ch)
+    while stack:
+        result += stack.pop()
+    return result
+
+def infix_to_prefix(exp):
+    exp = exp[::-1]
+    exp = exp.replace('(', 'temp').replace(')', '(').replace('temp', ')')
+    postfix = infix_to_postfix(exp)
+    return postfix[::-1]
+
+# Test Expression Conversion
+infix = "2+3*4"
+print(f"\nInfix: {infix}")
+print(f"Postfix: {infix_to_postfix(infix)}")
+print(f"Prefix: {infix_to_prefix(infix)}")
+
+infix2 = "(2+3)*4"
+print(f"\nInfix: {infix2}")
+print(f"Postfix: {infix_to_postfix(infix2)}")
+print(f"Prefix: {infix_to_prefix(infix2)}")
+
+# Output:
+# Stack after push: [10, 20, 30]
+# Top element: 30
+# Stack size: 3
+# 
+# Popped element: 30
+# Stack after pop: [10, 20]
+# New top: 20
+# 
+# Infix: 2+3*4
+# Postfix: 234*+
+# Prefix: +2*34
+# 
+# Infix: (2+3)*4
+# Postfix: 23+4*
+# Prefix: *+234</pre>
+
+<div class="code-header">C++ - Stack Operations & Expression Conversion</div>
+<pre>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int precedence(char op) {
+    if(op == '+' || op == '-') return 1;
+    if(op == '*' || op == '/') return 2;
+    if(op == '^') return 3;
+    return 0;
+}
+
+string infixToPostfix(string exp) {
+    stack&lt;char&gt; st;
+    string result = "";
+    for(char ch : exp) {
+        if(isalnum(ch)) {
+            result += ch;
+        }
+        else if(ch == '(') {
+            st.push(ch);
+        }
+        else if(ch == ')') {
+            while(!st.empty() && st.top() != '(') {
+                result += st.top();
+                st.pop();
+            }
+            st.pop();
+        }
+        else {
+            while(!st.empty() && precedence(st.top()) >= precedence(ch)) {
+                result += st.top();
+                st.pop();
+            }
+            st.push(ch);
+        }
+    }
+    while(!st.empty()) {
+        result += st.top();
+        st.pop();
+    }
+    return result;
+}
+
+string infixToPrefix(string exp) {
+    reverse(exp.begin(), exp.end());
+    for(int i = 0; i < exp.length(); i++) {
+        if(exp[i] == '(') exp[i] = ')';
+        else if(exp[i] == ')') exp[i] = '(';
+    }
+    string postfix = infixToPostfix(exp);
+    reverse(postfix.begin(), postfix.end());
+    return postfix;
+}
+
+int main() {
+    // Stack Push/Pop Operations
+    stack&lt;int&gt; st;
+    st.push(10);
+    st.push(20);
+    st.push(30);
+    cout &lt;&lt; "Stack size: " &lt;&lt; st.size() &lt;&lt; endl;
+    cout &lt;&lt; "Top element: " &lt;&lt; st.top() &lt;&lt; endl;
+    
+    int popped = st.top();
+    st.pop();
+    cout &lt;&lt; "\nPopped: " &lt;&lt; popped &lt;&lt; endl;
+    cout &lt;&lt; "After pop, size: " &lt;&lt; st.size() &lt;&lt; endl;
+    cout &lt;&lt; "New top: " &lt;&lt; st.top() &lt;&lt; endl;
+    
+    // Expression Conversion
+    string infix = "2+3*4";
+    cout &lt;&lt; "\nInfix: " &lt;&lt; infix &lt;&lt; endl;
+    cout &lt;&lt; "Postfix: " &lt;&lt; infixToPostfix(infix) &lt;&lt; endl;
+    cout &lt;&lt; "Prefix: " &lt;&lt; infixToPrefix(infix) &lt;&lt; endl;
+    
+    string infix2 = "(2+3)*4";
+    cout &lt;&lt; "\nInfix: " &lt;&lt; infix2 &lt;&lt; endl;
+    cout &lt;&lt; "Postfix: " &lt;&lt; infixToPostfix(infix2) &lt;&lt; endl;
+    cout &lt;&lt; "Prefix: " &lt;&lt; infixToPrefix(infix2) &lt;&lt; endl;
+    
+    return 0;
+}
+
+/* Output:
+Stack size: 3
+Top element: 30
+
+Popped: 30
+After pop, size: 2
+New top: 20
+
+Infix: 2+3*4
+Postfix: 234*+
+Prefix: +2*34
+
+Infix: (2+3)*4
+Postfix: 23+4*
+Prefix: *+234
+*/</pre>
+</div>
+
+<div id="queue" class="tabcontent card">
+<h2>🚶 Queue</h2>
+<div class="flex">
+<input id="queueInput" type="number" placeholder="Enter value">
+<button onclick="enqueue()">Enqueue</button>
+<button onclick="dequeue()">Dequeue</button>
+</div>
+<p class="result" id="queueResult">Queue: []</p>
+<textarea id="queueOutput" readonly>Queue operations will appear here...</textarea>
+
+<div class="code-header">Python - Queue Operations</div>
+<pre># Python Queue Implementation
+queue = []
+
+# Enqueue (add to rear)
+queue.append(10)
+queue.append(20)
+queue.append(30)
+print("Queue after enqueue:", queue)
+print("Front element:", queue[0])
+print("Rear element:", queue[-1])
+print("Queue size:", len(queue))
+
+# Dequeue (remove from front)
+front = queue.pop(0)
+print("\nDequeued element:", front)
+print("Queue after dequeue:", queue)
+print("New front:", queue[0])
+print("Queue size:", len(queue))
+
+# Check if empty
+print("Is empty:", len(queue) == 0)
+
+# Using deque (more efficient)
+from collections import deque
+queue_deque = deque([10, 20, 30])
+print("\n--- Using deque ---")
+print("Queue:", list(queue_deque))
+
+queue_deque.append(40)  # Enqueue
+print("After enqueue 40:", list(queue_deque))
+
+front = queue_deque.popleft()  # Dequeue
+print("Dequeued:", front)
+print("After dequeue:", list(queue_deque))
+
+# Output:
+# Queue after enqueue: [10, 20, 30]
+# Front element: 10
+# Rear element: 30
+# Queue size: 3
+# 
+# Dequeued element: 10
+# Queue after dequeue: [20, 30]
+# New front: 20
+# Queue size: 2
+# Is empty: False
+# 
+# --- Using deque ---
+# Queue: [10, 20, 30]
+# After enqueue 40: [10, 20, 30, 40]
+# Dequeued: 10
+# After dequeue: [20, 30, 40]</pre>
+
+<div class="code-header">C++ - Queue Operations</div>
+<pre>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main() {
+    queue&lt;int&gt; q;
+    
+    // Enqueue (add to rear)
+    q.push(10);
+    q.push(20);
+    q.push(30);
+    cout &lt;&lt; "Queue size: " &lt;&lt; q.size() &lt;&lt; endl;
+    cout &lt;&lt; "Front element: " &lt;&lt; q.front() &lt;&lt; endl;
+    cout &lt;&lt; "Rear element: " &lt;&lt; q.back() &lt;&lt; endl;
+    
+    // Dequeue (remove from front)
+    cout &lt;&lt; "\nDequeued: " &lt;&lt; q.front() &lt;&lt; endl;
+    q.pop();
+    
+    cout &lt;&lt; "After dequeue:" &lt;&lt; endl;
+    cout &lt;&lt; "Size: " &lt;&lt; q.size() &lt;&lt; endl;
+    cout &lt;&lt; "Front: " &lt;&lt; q.front() &lt;&lt; endl;
+    cout &lt;&lt; "Rear: " &lt;&lt; q.back() &lt;&lt; endl;
+    
+    // Check if empty
+    cout &lt;&lt; "Is empty: " &lt;&lt; (q.empty() ? "Yes" : "No") &lt;&lt; endl;
+    
+    // Enqueue more
+    q.push(40);
+    cout &lt;&lt; "\nAfter enqueue 40:" &lt;&lt; endl;
+    cout &lt;&lt; "Size: " &lt;&lt; q.size() &lt;&lt; endl;
+    cout &lt;&lt; "Front: " &lt;&lt; q.front() &lt;&lt; endl;
+    cout &lt;&lt; "Rear: " &lt;&lt; q.back() &lt;&lt; endl;
+    
+    return 0;
+}
+
+/* Output:
+Queue size: 3
+Front element: 10
+Rear element: 30
+
+Dequeued: 10
+After dequeue:
+Size: 2
+Front: 20
+Rear: 30
+Is empty: No
+
+After enqueue 40:
+Size: 3
+Front: 20
+Rear: 40
+*/</pre>
+</div>
+
+<div id="tree" class="tabcontent card">
+<h2>🌳 Binary Search Tree (Insertion)</h2>
+<div class="flex">
+  <input id="bstInput" type="number" placeholder="Insert value">
+  <button onclick="insertBST()">Insert</button>
+</div>
+
+<pre id="bstVisual" style="
+background:rgba(102,126,234,0.1);
+border-left:4px solid #667eea;
+padding:20px;
+font-family:'Courier New',monospace;
+margin-top:15px;
+">Tree is empty</pre>
+
+<h3>Example Insert Order:</h3>
+<p><strong>Insert:</strong> 10 → 5 → 15 → 3 → 7</p>
+
+<pre style="
+background:rgba(102,126,234,0.1);
+border-left:4px solid #667eea;
+padding:20px;
+font-family:'Courier New',monospace;
+">
+        10
+       /  \
+      5    15
+     / \
+    3   7
+</pre>
+
+<h3>Insertion Rule (BST)</h3>
+<ol>
+  <li>If tree is empty → new value becomes root</li>
+  <li>If value is less than node → go left</li>
+  <li>If value is greater than node → go right</li>
+  <li>Repeat until empty spot is found</li>
+</ol>
+
+<h3>Traversals (Based on Tree Above)</h3>
+<ul>
+  <li><strong>Inorder:</strong> 3 5 7 10 15</li>
+  <li><strong>Preorder:</strong> 10 5 3 7 15</li>
+  <li><strong>Postorder:</strong> 3 7 5 15 10</li>
+</ul>
+
+<h2>🌳 Tree Traversal</h2>
+<p>Tree Structure:</p>
+<pre style="background:rgba(102,126,234,0.1); border-left:4px solid #667eea;">    1
+   / \
+  2   3
+ / \
+4   5</pre>
+<div class="flex">
+<button onclick="showInorder()">Inorder</button>
+<button onclick="showPreorder()">Preorder</button>
+<button onclick="showPostorder()">Postorder</button>
+</div>
+<p class="result" id="treeResult">Select traversal...</p>
+<textarea id="treeOutput" readonly>Tree traversal will appear here...</textarea>
+
+<div class="code-header">Python - Binary Tree Traversal</div>
+<pre># Python Binary Tree
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+# Build the tree:
+#     1
+#    / \
+#   2   3
+#  / \
+# 4   5
+
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+# Inorder Traversal (Left -> Root -> Right)
+def inorder(node):
+    if node:
+        inorder(node.left)
+        print(node.data, end=' ')
+        inorder(node.right)
+
+# Preorder Traversal (Root -> Left -> Right)
+def preorder(node):
+    if node:
+        print(node.data, end=' ')
+        preorder(node.left)
+        preorder(node.right)
+
+# Postorder Traversal (Left -> Right -> Root)
+def postorder(node):
+    if node:
+        postorder(node.left)
+        postorder(node.right)
+        print(node.data, end=' ')
+
+print("Inorder Traversal: ", end='')
+inorder(root)
+print()
+
+print("Preorder Traversal: ", end='')
+preorder(root)
+print()
+
+print("Postorder Traversal: ", end='')
+postorder(root)
+print()
+
+# Output:
+# Inorder Traversal: 4 2 5 1 3
+# Preorder Traversal: 1 2 4 5 3
+# Postorder Traversal: 4 5 2 3 1</pre>
+
+<div class="code-header">C++ - Binary Tree Traversal</div>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node *left, *right;
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+};
+
+// Inorder Traversal (Left -> Root -> Right)
+void inorder(Node* node) {
+    if(node != nullptr) {
+        inorder(node->left);
+        cout &lt;&lt; node->data &lt;&lt; " ";
+        inorder(node->right);
+    }
+}
+
+// Preorder Traversal (Root -> Left -> Right)
+void preorder(Node* node) {
+    if(node != nullptr) {
+        cout &lt;&lt; node->data &lt;&lt; " ";
+        preorder(node->left);
+        preorder(node->right);
+    }
+}
+
+// Postorder Traversal (Left -> Right -> Root)
+void postorder(Node* node) {
+    if(node != nullptr) {
+        postorder(node->left);
+        postorder(node->right);
+        cout &lt;&lt; node->data &lt;&lt; " ";
+    }
+}
+
+int main() {
+    // Build the tree:
+    //     1
+    //    / \
+    //   2   3
+    //  / \
+    // 4   5
+    
+    Node* root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->left = new Node(4);
+    root->left->right = new Node(5);
+    
+    cout &lt;&lt; "Inorder Traversal: ";
+    inorder(root);
+    cout &lt;&lt; endl;
+    
+    cout &lt;&lt; "Preorder Traversal: ";
+    preorder(root);
+    cout &lt;&lt; endl;
+    
+    cout &lt;&lt; "Postorder Traversal: ";
+    postorder(root);
+    cout &lt;&lt; endl;
+    
+    return 0;
+}
+
+/* Output:
+Inorder Traversal: 4 2 5 1 3 
+Preorder Traversal: 1 2 4 5 3 
+Postorder Traversal: 4 5 2 3 1 
+*/</pre>
+</div>
+
+</div>
+
+<footer>
+© 2025 Website Group Project | Data Structures 
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tabcontent').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+
+// Array Operations
+let arr = [];
+function addArray() {
+  let v = document.getElementById('arrayInput').value;
+  if(v) {
+    arr.push(+v);
+    document.getElementById('arrayResult').textContent = 'Array: [' + arr.join(', ') + ']';
+    document.getElementById('arrayOutput').value = 'Array: [' + arr.join(', ') + ']\nLength: ' + arr.length;
+    document.getElementById('arrayInput').value = '';
+  } else alert('Enter a number!');
+}
+
+function removeArray() {
+  if(arr.length) {
+    let r = arr.pop();
+    document.getElementById('arrayResult').textContent = 'Array: [' + arr.join(', ') + ']';
+    document.getElementById('arrayOutput').value = 'Removed: ' + r + '\nArray: [' + arr.join(', ') + ']\nLength: ' + arr.length;
+  } else alert('Array is empty!');
+}
+
+function searchArray() {
+  let v = document.getElementById('arrayInput').value;
+  if(v) {
+    let i = arr.indexOf(+v);
+    alert(i !== -1 ? v + ' found at index ' + i : v + ' not found');
+  } else alert('Enter a number!');
+}
+
+// Stack Operations
+let stack = [];
+const MAX_STACK = 5;
+
+function updateStackVisual() {
+  let visual = document.getElementById('stackVisual');
+  let bottomLabel = '<div style="font-weight:600; color:#667eea; margin-top:15px; padding:10px; background:rgba(102,126,234,0.1); border-radius:8px; width:150px; text-align:center;">⬇️ BOTTOM ⬇️</div>';
+  
+  if(stack.length === 0) {
+    visual.innerHTML = bottomLabel + '<div style="color:#999; padding:30px; font-style:italic;">Stack is empty</div>';
+  } else {
+    let boxes = '';
+    for(let i = 0; i < stack.length; i++) {
+      let isTop = (i === stack.length - 1);
+      boxes += `<div style="
+        width:150px; 
+        padding:15px 20px; 
+        margin:5px; 
+        background:${isTop ? 'linear-gradient(135deg, #667eea, #764ba2)' : 'linear-gradient(135deg, #a8b3f5, #c4b5fd)'}; 
+        color:white; 
+        font-weight:${isTop ? '700' : '600'}; 
+        font-size:${isTop ? '1.3em' : '1.1em'}; 
+        border-radius:12px; 
+        text-align:center; 
+        box-shadow:0 5px 15px rgba(102,126,234,0.3);
+        border:${isTop ? '3px solid #fff' : '2px solid rgba(255,255,255,0.3)'};
+        animation:slideIn 0.3s ease-out;
+      ">${stack[i]} ${isTop ? ' 💜  TOP' : ''}</div>`;
+    }
+    visual.innerHTML = bottomLabel + boxes;
+  }
+}
+
+function pushStack() {
+  let v = document.getElementById('stackInput').value;
+
+  if (!v) {
+    alert('Enter a number!');
+    return;
+  }
+
+  if (stack.length >= MAX_STACK) {
+    alert('🚫 STACK OVERFLOW! Max size is 5');
+    return; // ⛔ stops pushing
+  }
+
+  stack.push(+v);
+  updateStackVisual();
+
+  document.getElementById('stackResult').textContent =
+    'Stack: [' + stack.join(', ') + '] | Size: ' + stack.length;
+
+  document.getElementById('stackOutput').value =
+    '✅ Pushed: ' + v +
+    '\nStack: [' + stack.join(', ') + ']' +
+    '\nSize: ' + stack.length +
+    '\nTop: ' + stack[stack.length - 1];
+
+  document.getElementById('stackInput').value = '';
+}
+
+
+function popStack() {
+  if(stack.length) {
+    let r = stack.pop();
+    updateStackVisual();
+    document.getElementById('stackResult').textContent = 'Stack: [' + stack.join(', ') + '] | Size: ' + stack.length;
+    document.getElementById('stackOutput').value = '❌ Popped: ' + r + '\nStack: [' + stack.join(', ') + ']\nSize: ' + stack.length + '\nTop: ' + (stack[stack.length-1] || 'Empty');
+  } else alert('Stack is empty!');
+}
+
+function peekStack() {
+  if(stack.length) {
+    alert(' 💜  Top element: ' + stack[stack.length-1]);
+  } else alert('Stack is empty!');
+}
+
+function clearStack() {
+  stack = [];
+  updateStackVisual();
+  document.getElementById('stackResult').textContent = 'Stack: [] | Size: 0';
+  document.getElementById('stackOutput').value = '🗑️ Stack cleared!';
+}
+
+// Expression Conversion
+function precedence(op) {
+  return op == '+' || op == '-' ? 1 : op == '*' || op == '/' ? 2 : op == '^' ? 3 : 0;
+}
+
+function isOperator(c) {
+  return ['+', '-', '*', '/', '^'].includes(c);
+}
+
+function infixToPostfix(exp) {
+  let s = [], r = '';
+  let i = 0;
+  
+  while(i < exp.length) {
+    let c = exp[i];
+    
+    // Skip spaces
+    if(c == ' ') {
+      i++;
+      continue;
+    }
+    
+    // Letters (variables like A, B, C)
+    if(/[a-zA-Z]/.test(c)) {
+      r += c + ' ';
+      i++;
+      continue;
+    }
+    
+    // Multi-digit number
+    if(/[0-9]/.test(c)) {
+      let num = '';
+      while(i < exp.length && /[0-9]/.test(exp[i])) {
+        num += exp[i];
+        i++;
+      }
+      r += num + ' ';
+      continue;
+    }
+    
+    if(c == '(') {
+      s.push(c);
+    } else if(c == ')') {
+      while(s.length && s[s.length-1] != '(') {
+        r += s.pop() + ' ';
+      }
+      s.pop();
+    } else if(isOperator(c)) {
+      while(s.length && isOperator(s[s.length-1]) && precedence(s[s.length-1]) >= precedence(c)) {
+        r += s.pop() + ' ';
+      }
+      s.push(c);
+    }
+    i++;
+  }
+  
+  while(s.length) {
+    r += s.pop() + ' ';
+  }
+  
+  return r.trim();
+}
+
+function infixToPrefix(exp) {
+  // Reverse the expression
+  let reversed = '';
+  let i = exp.length - 1;
+  
+  while(i >= 0) {
+    let c = exp[i];
+    
+    if(c == ' ') {
+      i--;
+      continue;
+    }
+    
+    // Letters
+    if(/[a-zA-Z]/.test(c)) {
+      reversed += c + ' ';
+      i--;
+      continue;
+    }
+    
+    // Multi-digit number - read backwards
+    if(/[0-9]/.test(c)) {
+      let num = '';
+      while(i >= 0 && /[0-9]/.test(exp[i])) {
+        num = exp[i] + num;
+        i--;
+      }
+      reversed += num + ' ';
+      i++;
+    } else if(c == '(') {
+      reversed += ')';
+    } else if(c == ')') {
+      reversed += '(';
+    } else if(isOperator(c)) {
+      reversed += c;
+    }
+    i--;
+  }
+  
+  // Get postfix of reversed
+  let postfix = infixToPostfix(reversed.trim());
+  
+  // Reverse the result
+  let tokens = postfix.split(' ').filter(t => t !== '');
+  return tokens.reverse().join(' ');
+}
+
+function evalPostfix(p) {
+  let s = [];
+  let tokens = p.split(' ').filter(t => t !== '');
+  
+  // Check if expression has variables (letters)
+  let hasVariables = false;
+  for(let token of tokens) {
+    if(/[a-zA-Z]/.test(token)) {
+      hasVariables = true;
+      break;
+    }
+  }
+  
+  if(hasVariables) {
+    return 'Cannot evaluate (contains variables)';
+  }
+  
+  for(let token of tokens) {
+    if(/^[0-9]+$/.test(token)) {
+      s.push(parseFloat(token));
+    } else if(isOperator(token)) {
+      if(s.length < 2) return 'Error';
+      let b = s.pop();
+      let a = s.pop();
+      
+      if(token == '+') s.push(a + b);
+      else if(token == '-') s.push(a - b);
+      else if(token == '*') s.push(a * b);
+      else if(token == '/') s.push(a / b);
+      else if(token == '^') s.push(Math.pow(a, b));
+    }
+  }
+  
+  return s.length === 1 ? s[0] : 'Error';
+}
+
+function convertExpression() {
+  let e = document.getElementById('expressionInput').value.trim();
+  if(!e) {
+    alert('Enter expression!');
+    return;
+  }
+  
+  let postfix = infixToPostfix(e);
+  let prefix = infixToPrefix(e);
+  let result = evalPostfix(postfix);
+  
+  document.getElementById('infixDisplayResult').textContent = '📝 Infix: ' + e;
+  document.getElementById('prefixResult').textContent = '⬅️ Prefix: ' + prefix;
+  document.getElementById('postfixResult').textContent = '➡️ Postfix: ' + postfix + ' | Result: ' + result;
+  document.getElementById('stackOutput').value = 'Infix: ' + e + '\nPrefix: ' + prefix + '\nPostfix: ' + postfix + '\nEvaluated Result: ' + result;
+}
+
+// Queue Operations
+let queue = [];
+
+function enqueue() {
+  let v = document.getElementById('queueInput').value;
+  if(v) {
+    queue.push(+v);
+    document.getElementById('queueResult').textContent = 'Queue: [' + queue.join(', ') + ']';
+    document.getElementById('queueOutput').value = 'Enqueued: ' + v + '\nQueue: [' + queue.join(', ') + ']\nSize: ' + queue.length + '\nFront: ' + (queue[0] || 'Empty') + '\nRear: ' + (queue[queue.length-1] || 'Empty');
+    document.getElementById('queueInput').value = '';
+  } else alert('Enter a value!');
+}
+
+function dequeue() {
+  if(queue.length) {
+    let r = queue.shift();
+    document.getElementById('queueResult').textContent = 'Queue: [' + queue.join(', ') + ']';
+    document.getElementById('queueOutput').value = 'Dequeued: ' + r + '\nQueue: [' + queue.join(', ') + ']\nSize: ' + queue.length + '\nFront: ' + (queue[0] || 'Empty') + '\nRear: ' + (queue[queue.length-1] || 'Empty');
+  } else alert('Queue is empty!');
+}
+
+// Tree Operations
+function showInorder() {
+  document.getElementById('treeResult').textContent = 'Inorder (L-Root-R): 4 2 5 1 3';
+  document.getElementById('treeOutput').value = 'Inorder Traversal: 4 2 5 1 3\nProcess: Left → Root → Right';
+}
+
+function showPreorder() {
+  document.getElementById('treeResult').textContent = 'Preorder (Root-L-R): 1 2 4 5 3';
+  document.getElementById('treeOutput').value = 'Preorder Traversal: 1 2 4 5 3\nProcess: Root → Left → Right';
+}
+
+function showPostorder() {
+  document.getElementById('treeResult').textContent = 'Postorder (L-R-Root): 4 5 2 3 1';
+  document.getElementById('treeOutput').value = 'Postorder Traversal: 4 5 2 3 1\nProcess: Left → Right → Root';
+}
+// ===== BINARY SEARCH TREE =====
+class BSTNode {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+let bstRoot = null;
+
+function insertBST() {
+  const input = document.getElementById("bstInput");
+  if (!input) {
+    alert("bstInput not found");
+    return;
+  }
+
+  const value = input.value;
+  if (value === "") {
+    alert("Enter a value");
+    return;
+  }
+
+  bstRoot = bstInsert(bstRoot, Number(value));
+  input.value = "";
+  renderBST();
+}
+
+function bstInsert(node, value) {
+  if (node === null) {
+    return new BSTNode(value);
+  }
+
+  if (value < node.value) {
+    node.left = bstInsert(node.left, value);
+  } else if (value > node.value) {
+    node.right = bstInsert(node.right, value);
+  }
+
+  return node;
+}
+
+function renderBST() {
+  const visual = document.getElementById("bstVisual");
+  let lines = [];
+  drawBST(bstRoot, "", true, lines);
+  visual.textContent = lines.length ? lines.join("\n") : "Tree is empty";
+}
+
+function drawBST(node, prefix, isLeft, lines) {
+  if (!node) return;
+
+  lines.push(prefix + (isLeft ? "├── " : "└── ") + node.value);
+  drawBST(node.left, prefix + (isLeft ? "│   " : "    "), true, lines);
+  drawBST(node.right, prefix + (isLeft ? "│   " : "    "), false, lines);
+}
+</script>
+
+</body>
+</html>
